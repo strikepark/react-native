@@ -17,6 +17,7 @@ import com.facebook.infer.annotation.Assertions;
 import com.facebook.systrace.SystraceMessage;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import android.util.Log;
 
 public class JavaMethodWrapper implements NativeModule.NativeMethod {
 
@@ -61,6 +62,8 @@ public class JavaMethodWrapper implements NativeModule.NativeMethod {
         @Override
         public Integer extractArgument(
             JSInstance jsInstance, ReadableArray jsArguments, int atIndex) {
+          Log.d("[planado]", jsArguments.toArrayList() + " index: " + Integer.toString(atIndex));
+
           return (int) jsArguments.getDouble(atIndex);
         }
       };
@@ -133,8 +136,7 @@ public class JavaMethodWrapper implements NativeModule.NativeMethod {
         }
       };
 
-  private static final boolean DEBUG =
-      PrinterHolder.getPrinter().shouldDisplayLogMessage(ReactDebugOverlayTags.BRIDGE_CALLS);
+  private static final boolean DEBUG = true;
 
   private static char paramTypeToChar(Class paramClass) {
     char tryCommon = commonTypeToChar(paramClass);
