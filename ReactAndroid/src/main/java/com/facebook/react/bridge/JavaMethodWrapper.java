@@ -127,8 +127,7 @@ public class JavaMethodWrapper implements NativeModule.NativeMethod {
         public Promise extractArgument(
             JSInstance jsInstance, ReadableArray jsArguments, int atIndex) {
           String traceName = mModuleWrapper.getName() + "." + mMethod.getName();
-          Log.d("[planado]", "JS->Java: " + traceName + "()");
-          Log.d("[planado]", jsArguments.toArrayList() + " index: " + Integer.toString(atIndex));
+          Log.d("[planado]", "JS->Java: " + traceName + "(); arguments: " + jsArguments.toArrayList() + " index: " + Integer.toString(atIndex));
           Callback resolve =
               ARGUMENT_EXTRACTOR_CALLBACK.extractArgument(jsInstance, jsArguments, atIndex);
           Callback reject =
