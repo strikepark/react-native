@@ -62,8 +62,6 @@ public class JavaMethodWrapper implements NativeModule.NativeMethod {
         @Override
         public Integer extractArgument(
             JSInstance jsInstance, ReadableArray jsArguments, int atIndex) {
-          Log.d("[planado]", jsArguments.toArrayList() + " index: " + Integer.toString(atIndex));
-
           return (int) jsArguments.getDouble(atIndex);
         }
       };
@@ -128,6 +126,9 @@ public class JavaMethodWrapper implements NativeModule.NativeMethod {
         @Override
         public Promise extractArgument(
             JSInstance jsInstance, ReadableArray jsArguments, int atIndex) {
+          String traceName = mModuleWrapper.getName() + "." + mMethod.getName();
+          Log.d("[planado]", "JS->Java: " + traceName + "()");
+          Log.d("[planado]", jsArguments.toArrayList() + " index: " + Integer.toString(atIndex));
           Callback resolve =
               ARGUMENT_EXTRACTOR_CALLBACK.extractArgument(jsInstance, jsArguments, atIndex);
           Callback reject =
@@ -331,6 +332,7 @@ public class JavaMethodWrapper implements NativeModule.NativeMethod {
     SystraceMessage.beginSection(TRACE_TAG_REACT_JAVA_BRIDGE, "callJavaModuleMethod")
         .arg("method", traceName)
         .flush();
+    Log.d("[planado]", "JS->Java: " + traceName + "()");
     if (DEBUG) {
       PrinterHolder.getPrinter()
           .logMessage(
