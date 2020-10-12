@@ -181,6 +181,7 @@ const AppRegistry = {
    * See https://reactnative.dev/docs/appregistry.html#runapplication
    */
   runApplication(appKey: string, appParameters: any): void {
+    console.log('runApplication', appKey, appParameters);
     if (appKey !== 'LogBox') {
       const msg =
         'Running "' + appKey + '" with ' + JSON.stringify(appParameters);
@@ -208,6 +209,7 @@ const AppRegistry = {
    * See https://reactnative.dev/docs/appregistry.html#unmountapplicationcomponentatroottag
    */
   unmountApplicationComponentAtRootTag(rootTag: number): void {
+    console.log('unmountApplicationComponentAtRootTag', rootTag);
     ReactNative.unmountComponentAtNodeAndRemoveContainer(rootTag);
   },
 
