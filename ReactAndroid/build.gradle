@@ -481,3 +481,10 @@ react {
     reactNativeRootDir = file("$rootDir")
     useJavaGenerator = System.getenv("USE_CODEGEN_JAVAPOET") ?: false
 }
+
+tasks.withType(Javadoc) {
+      failOnError false
+      options.addStringOption('Xdoclint:none', '-quiet')
+      options.addStringOption('encoding', 'UTF-8')
+      options.addStringOption('charSet', 'UTF-8')
+}
