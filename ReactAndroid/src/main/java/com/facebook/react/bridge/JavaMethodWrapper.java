@@ -35,6 +35,7 @@ public class JavaMethodWrapper implements NativeModule.NativeMethod {
         @Override
         public Boolean extractArgument(
             JSInstance jsInstance, ReadableArray jsArguments, int atIndex) {
+          Log.d("[planado]", jsArguments.toArrayList() + " index: " + Integer.toString(atIndex));
           return jsArguments.getBoolean(atIndex);
         }
       };
@@ -44,6 +45,7 @@ public class JavaMethodWrapper implements NativeModule.NativeMethod {
         @Override
         public Double extractArgument(
             JSInstance jsInstance, ReadableArray jsArguments, int atIndex) {
+          Log.d("[planado]", jsArguments.toArrayList() + " index: " + Integer.toString(atIndex));
           return jsArguments.getDouble(atIndex);
         }
       };
@@ -53,6 +55,7 @@ public class JavaMethodWrapper implements NativeModule.NativeMethod {
         @Override
         public Float extractArgument(
             JSInstance jsInstance, ReadableArray jsArguments, int atIndex) {
+          Log.d("[planado]", jsArguments.toArrayList() + " index: " + Integer.toString(atIndex));
           return (float) jsArguments.getDouble(atIndex);
         }
       };
@@ -62,6 +65,7 @@ public class JavaMethodWrapper implements NativeModule.NativeMethod {
         @Override
         public Integer extractArgument(
             JSInstance jsInstance, ReadableArray jsArguments, int atIndex) {
+          Log.d("[planado]", jsArguments.toArrayList() + " index: " + Integer.toString(atIndex));
           return (int) jsArguments.getDouble(atIndex);
         }
       };
@@ -71,6 +75,7 @@ public class JavaMethodWrapper implements NativeModule.NativeMethod {
         @Override
         public String extractArgument(
             JSInstance jsInstance, ReadableArray jsArguments, int atIndex) {
+          Log.d("[planado]", jsArguments.toArrayList() + " index: " + Integer.toString(atIndex));
           return jsArguments.getString(atIndex);
         }
       };
@@ -80,6 +85,7 @@ public class JavaMethodWrapper implements NativeModule.NativeMethod {
         @Override
         public ReadableArray extractArgument(
             JSInstance jsInstance, ReadableArray jsArguments, int atIndex) {
+          Log.d("[planado]", jsArguments.toArrayList() + " index: " + Integer.toString(atIndex));
           return jsArguments.getArray(atIndex);
         }
       };
@@ -89,6 +95,7 @@ public class JavaMethodWrapper implements NativeModule.NativeMethod {
         @Override
         public Dynamic extractArgument(
             JSInstance jsInstance, ReadableArray jsArguments, int atIndex) {
+          Log.d("[planado]", jsArguments.toArrayList() + " index: " + Integer.toString(atIndex));
           return DynamicFromArray.create(jsArguments, atIndex);
         }
       };
@@ -98,6 +105,7 @@ public class JavaMethodWrapper implements NativeModule.NativeMethod {
         @Override
         public ReadableMap extractArgument(
             JSInstance jsInstance, ReadableArray jsArguments, int atIndex) {
+          Log.d("[planado]", jsArguments.toArrayList() + " index: " + Integer.toString(atIndex));
           return jsArguments.getMap(atIndex);
         }
       };
@@ -107,6 +115,7 @@ public class JavaMethodWrapper implements NativeModule.NativeMethod {
         @Override
         public @Nullable Callback extractArgument(
             JSInstance jsInstance, ReadableArray jsArguments, int atIndex) {
+          Log.d("[planado]", jsArguments.toArrayList() + " index: " + Integer.toString(atIndex));
           if (jsArguments.isNull(atIndex)) {
             return null;
           } else {
@@ -330,7 +339,7 @@ public class JavaMethodWrapper implements NativeModule.NativeMethod {
     SystraceMessage.beginSection(TRACE_TAG_REACT_JAVA_BRIDGE, "callJavaModuleMethod")
         .arg("method", traceName)
         .flush();
-    Log.d("[planado]", "JS->Java: " + traceName + "()");
+    Log.d("[planado]", "JS->Java: " + traceName + "(" + parameters.toArrayList() + ")");
     if (DEBUG) {
       PrinterHolder.getPrinter()
           .logMessage(
